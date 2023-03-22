@@ -53,3 +53,4 @@ vars:
 
  high_timestamp: '9999-12-31 23:59:59' # used in place of null for dbt valid_to
  current_records_only: false # switches all models to only latest records rather than all hist
+ surrogate_key_treat_nulls_as_empty_strings: true

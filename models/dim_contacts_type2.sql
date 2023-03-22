@@ -83,8 +83,8 @@ final_merged_users as (
             explicitly cast the result of a get from an array_agg otherwise you will end up with the
             quotation marks
         #}
-        get(array_agg(fau.user_name) within group (order by fau.created_at desc), 0)::string as user_name,
-        
+        --get(array_agg(fau.user_name) within group (order by fau.created_at desc), 0)::string as user_name,
+        max(fau.user_name),
         {#- 
             Note that a user can be associated with multiple gaggles depending on the merge,
             but the max() below explicitly will take only the later gaggle as associated.
@@ -110,7 +110,7 @@ final_merged_users as (
 
 , final as (
     select *,
-        {{ build_row_natural_id_from_columns(['user_id', 'effective_from_ts']) }} as row_natural_id,
+        concat(user_id,'|',effective_from_ts) as row_natural_id,
         {{ build_key_from_row_natural_id(['user_id', 'effective_from_ts']) }} as contacts_sk
     from final_merged_users    
 )
