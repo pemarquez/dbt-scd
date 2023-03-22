@@ -3,7 +3,7 @@
 {{
     config(
         target_schema="snapshot",
-        unique_key="concat(id, updated_at)",
+        unique_key="id||'-'||updated_at",
         strategy="timestamp",
         updated_at="updated_at",
     )
