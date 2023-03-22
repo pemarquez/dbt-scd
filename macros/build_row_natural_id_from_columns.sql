@@ -6,7 +6,7 @@
 
 {%- for col in input_col_list -%}
 
-    {%- do output_col_list.append("coalesce(cast(" ~ col ~ " as " ~ "), '')")  -%}
+    {%- do output_col_list.append(col)  -%}
 
 {%- endfor -%}
 
@@ -16,6 +16,6 @@
 
 {# {{% set output_str = output_col_list|join(', ') %}} #}
 
-{{ return('concat(' ~ output_col_list|join(', \'|\' , ') ~ ')') }}
+{{ return(output_col_list) }}
 
 {% endmacro %}
