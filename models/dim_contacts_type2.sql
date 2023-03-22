@@ -83,8 +83,7 @@ final_merged_users as (
             explicitly cast the result of a get from an array_agg otherwise you will end up with the
             quotation marks
         #}
-        --get(array_agg(fau.user_name) within group (order by fau.created_at desc), 0)::string as user_name,
-        max(fau.user_name),
+        get(array_agg(fau.user_name) within group (order by fau.created_at desc), 0)::string as user_name,
         {#- 
             Note that a user can be associated with multiple gaggles depending on the merge,
             but the max() below explicitly will take only the later gaggle as associated.
