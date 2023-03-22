@@ -60,6 +60,7 @@ final_all_users as (
         order_events.number_of_orders,
         iff(users.email_domain in {{ personal_emails }}, null, users.email_domain)
             as corporate_email,
+        users.updated_at,
         users.effective_from_ts,
         users.effective_to_ts
 
@@ -98,6 +99,7 @@ final_merged_users as (
         min(fau.most_recent_order) as most_recent_order,
         sum(fau.number_of_orders) as number_of_orders,
 
+        max(fau.updated_at) as updated_at,
         min(fau.effective_from_ts) as effective_from_ts,
         max(fau.effective_to_ts) as effective_to_tss
         
@@ -109,8 +111,8 @@ final_merged_users as (
 
 , final as (
     select *,
-        concat(user_id,'|',effective_from_ts) as row_natural_id,
-        {{ build_key_from_row_natural_id(['user_id', 'effective_from_ts']) }} as contacts_sk
+        concat(user_id,'-',updated_at) as row_natural_id,
+        {{ build_key_from_row_natural_id(['user_id', 'updated_at']) }} as contacts_sk
     from final_merged_users    
 )
 

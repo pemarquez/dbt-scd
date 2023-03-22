@@ -19,6 +19,7 @@ renamed as (
         
         gaggle_id, 
         created_at,
+        updated_at,
         effective_from_ts,
         effective_to_ts
 
