@@ -6,7 +6,7 @@
 
 {%- for col in input_col_list -%}
 
-    {%- do output_col_list.append("coalesce(cast(" ~ col ~ " as " ~ dbt_utils.type_string() ~ "), '')")  -%}
+    {%- do output_col_list.append("coalesce(cast(" ~ col ~ " as " ~ "), '')")  -%}
 
 {%- endfor -%}
 

@@ -27,6 +27,6 @@
 
 {{ log("Running build_key_from_columns with output_col_list: " ~ output_col_list) }}
 
-{{ return(dbt_utils.surrogate_key(output_col_list)) }}
+{{ return(dbt_utils.generate_surrogate_key(output_col_list)) }}
 
 {% endmacro %}

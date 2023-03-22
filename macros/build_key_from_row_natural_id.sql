@@ -4,6 +4,6 @@
 
 {{ log("Running build_key_from_row_natural_id") }}
 
-{{ return(dbt_utils.surrogate_key(build_row_natural_id_from_columns(input_col_list))) }}
+{{ return(dbt_utils.generate_surrogate_key(build_row_natural_id_from_columns(input_col_list))) }}
 
 {% endmacro %}
