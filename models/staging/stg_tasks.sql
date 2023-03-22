@@ -1,6 +1,6 @@
 with source as (
     select *
-    from {{ source('mydb', 'tasks') }}
+    from {{ source('snowflake', 'tasks') }}
     where true
     {# and _AB_CDC_UPDATED_AT = '1970-01-01T00:00:00Z' #}
 )

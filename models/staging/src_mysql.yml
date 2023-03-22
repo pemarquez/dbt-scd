@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  - name: mydb
-    database: airbyte
+  - name: snowflake
+    database: dbt_test
     tables:
       - name: tasks
